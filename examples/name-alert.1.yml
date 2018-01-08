@@ -1,0 +1,23 @@
+project: Tutorial
+test: First test
+link: http://devexpress.github.io/testcafe/example/
+description: bla bla bla
+
+options:
+  - accept alerts
+
+fields:
+  your-name: '#developer-name'
+  mac-os: '#macos'
+  interface: '#preferred-interface'
+
+buttons:
+  populate: '#populate'
+
+steps:
+  - write 'Leonardo' in 'your-name' field
+  - click in 'populate' button
+  - assert if 'your-name' field value is equals 'Peter Parker'
+  - click in 'mac-os' field
+  - select 'Both' in 'interface' field
+  - assert if 'interface' field value is equals 'Both'

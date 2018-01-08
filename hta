@@ -1,0 +1,33 @@
+#! /usr/bin/env node
+
+const _ = require('lodash')
+const c = require('chalk')
+
+console.log(c.green.bold("\nHuman Test Automatization v1.0"))
+console.log(c.bold("\t\t\t\tby Leonardo Vilarinho\n"))
+
+// process.on("uncaughtException", err => console.error(`\n${c.red('Error')}: ${err}`) )
+
+const clean  = require('./source/clean-inputs')
+const runner = require('./source/runner')
+
+const inputs = _.drop(process.argv, 2)
+let actions = {}, options = {}
+
+_.map(inputs, action => {
+  const crop = action.split(":")
+  actions[crop[0]] = crop[1]
+})
+
+console.log(c.green("Your settings:"))
+
+for(const name in clean) {
+  options[name] = undefined
+
+  if (actions[name] != undefined)
+    options[name] = clean[name](actions[name])
+}
+
+console.log(c.green("-------------------------------\n"))
+
+runner(options)
